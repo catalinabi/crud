@@ -1,0 +1,20 @@
+extends ../layout
+
+block content
+  h1(name='id') Edit Movie #{movie.id}
+  form(method='post', role='form', action='/movies/#{movie.id}/edit')
+    input(type="hidden" name="_method" value="put")
+    fieldset
+      legend 
+        div.form-group
+          label Movie Title
+          input(name='title', class='form-control' value='#{movie.title}')
+          label Movie Description
+          input(name='description', class='form-control' value='#{movie.description}')
+          label Movie Rating
+          input#inputRating(type='number', class='form-control', value='#{movie.rating}', name='rating')
+          label Movie Released Date
+          input(type="date" name='releasedDate', class='form-control',id='mdate' value="#{fullDate}")
+          button.btn.btn-primary(type='submit') Submit
+          button.btn.btn-default(type='reset') Clear
+

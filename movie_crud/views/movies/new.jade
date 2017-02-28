@@ -1,0 +1,24 @@
+extends ../layout
+   
+block content
+  h1 Create New Movie
+  form(role='form', method='post', action='/movies')
+    fieldset
+      legend New Movie
+      div.form-group
+        
+        label Movie Title
+        input(name='title', class='form-control')
+        label Movie Description
+        input(name='description', class='form-control')
+        label Movie Rating
+        select(id="rating", name="rating")
+         - numbers = [ '1', '2', '3', '4', '5']
+         each number, i in numbers
+          option(value=number) #{number}
+        label Movie Released Date
+        input(type="date" name='releasedDate', class='form-control',id='newdate')
+        div(id="prueba")
+      button.btn.btn-primary(type='submit') Submit
+      button.btn.btn-default(type='reset') Clear
+    

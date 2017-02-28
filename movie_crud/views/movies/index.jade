@@ -1,0 +1,29 @@
+extends ../layout
+block content
+  h1 Movies
+  p
+    a(href='/movies/new', class='btn btn-primary') Add a Movie
+  - if(movies.length)
+    table.table
+      tr
+        th ID
+        th TITLE
+        th DESCRIPTION
+        th RATING
+        th DATE
+         - each movie, i in movies
+            tr
+              td #{movie.id} 
+              td #{movie.title} 
+              td #{movie.description} 
+              td #{movie.rating} 
+              td(id="date-movie") #{moment(movie.releasedDate).format("DD-MM-YYYY")} 
+              td
+                a.btn.btn-default(href='/movies/#{movie.id}/edit') Edit
+              td
+                form(method='post', action='/movies/#{movie.id}/edit' enctype="application/x-www-form-urlencoded")
+                  input(name='_method', value='DELETE', type='hidden')
+                  button.btn.btn-danger(type='submit') Delete
+               
+  - else
+    p You don't have any movies! 
